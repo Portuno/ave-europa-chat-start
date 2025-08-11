@@ -28,7 +28,7 @@
     <polygon points="26,20 27,22 29,22 27.5,23.5 28,26 26,24.5 24,26 24.5,23.5 23,22 25,22" />
   </g>
   
-  <!-- Texto AVE EUROPA -->
+  <!-- AVE EUROPA Text -->
   <text x="16" y="18" font-family="Arial, sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="white">AVE</text>
   <text x="16" y="24" font-family="Arial, sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="white">EUROPA</text>
   

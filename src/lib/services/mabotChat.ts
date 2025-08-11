@@ -153,17 +153,17 @@ class MabotChatService {
     // Mejorar el formato del texto para mejor legibilidad
     let formattedText = text;
     
-    // Asegurar que los números de lista tengan espacios consistentes
+    // Ensure list numbers have consistent spacing
     formattedText = formattedText.replace(/(\d+\.)\s*/g, '$1 ');
     
-    // Asegurar que los títulos en negrita tengan espacios después
-    formattedText = formattedText.replace(/\*\*(.*?)\*\*:/g, '**$1:**');
+    // Ensure bold titles have spaces after them
+    formattedText = formattedText.replace(/\*\*(.*?)\*\*\s*/g, '**$1** ');
     
-    // Asegurar que haya espacios después de los puntos
-    formattedText = formattedText.replace(/\.(\w)/g, '. $1');
+    // Ensure there are spaces after periods
+    formattedText = formattedText.replace(/\.(\S)/g, '. $1');
     
-    // Asegurar que las preguntas al final tengan formato consistente
-    formattedText = formattedText.replace(/\?(\s*)$/, '?\n\n¿Te gustaría que profundice en algún aspecto específico?');
+    // Ensure questions at the end have consistent formatting
+    formattedText = formattedText.replace(/\?(\s*)$/, '?\n\nWould you like me to elaborate on any specific aspect?');
     
     return formattedText;
   }

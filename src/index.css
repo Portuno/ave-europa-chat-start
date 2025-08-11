@@ -120,6 +120,18 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow: hidden; /* Prevent body scrolling by default */
+  }
+
+  /* Ensure chat area has smooth scrolling */
+  .chat-scrollbar {
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent any scrolling on the main page */
+  html, body {
+    overflow: hidden;
+    height: 100%;
   }
 }

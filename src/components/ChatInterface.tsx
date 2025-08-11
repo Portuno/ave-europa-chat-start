@@ -5,6 +5,7 @@ import { Send, Bot, User, RotateCcw } from "lucide-react";
 import mabotChatService from "@/lib/services/mabotChat";
 import MabotConfigStatus from "./MabotConfigStatus";
 import MabotApiDebug from "./MabotApiDebug";
+import "../styles/scrollbar.css";
 
 interface Message {
   id: string;
@@ -163,14 +164,14 @@ const ChatInterface = forwardRef<ChatInterfaceRef, ChatInterfaceProps>(({ onSend
   }));
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-card border border-chat-border rounded-2xl shadow-[var(--shadow-chat)] overflow-hidden">
+    <div className="w-full h-full max-w-2xl mx-auto bg-card border border-chat-border rounded-2xl shadow-[var(--shadow-chat)] overflow-hidden flex flex-col">
       {/* MABOT Configuration Status */}
       <MabotConfigStatus />
       
       {/* Chat Header - ELIMINADO para maximizar espacio del chat */}
 
-      {/* Messages - Área más grande para el chat */}
-      <div className="h-[600px] overflow-y-auto p-4 space-y-4 bg-chat-background">
+      {/* Messages - Área más grande para el chat con scroll propio */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-chat-background chat-scrollbar">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -217,7 +218,7 @@ const ChatInterface = forwardRef<ChatInterfaceRef, ChatInterfaceProps>(({ onSend
               <div className="bg-chat-bot-bubble border border-chat-border rounded-2xl px-4 py-2">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                  <span className="text-sm text-muted-foreground">Ave Europa está pensando...</span>
+                  <span className="text-sm text-muted-foreground">Ave Europa is thinking...</span>
                 </div>
               </div>
             </div>

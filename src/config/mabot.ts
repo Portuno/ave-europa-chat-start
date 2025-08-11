@@ -9,13 +9,34 @@ interface MabotConfig {
 }
 
 // Load configuration from environment variables
-// Note: These will be undefined in the browser since they don't have VITE_ prefix
-const config: MabotConfig = {
-  apiUrl: import.meta.env.MABOT_API_URL || '',
-  botUsername: import.meta.env.MABOT_BOT_USERNAME || 'aveeuropa',
-  email: import.meta.env.MABOT_EMAIL || '',
-  password: import.meta.env.MABOT_PASSWORD || '',
+// Try both Vite env and direct process.env for better compatibility
+const getEnvVar = (key: string): string => {
+  // First try Vite's import.meta.env
+  const viteValue = import.meta.env[key];
+  if (viteValue) return viteValue;
+  
+  // Fallback to process.env (for SSR or Node environments)
+  if (typeof process !== 'undefined' && process.env) {
+    return process.env[key] || '';
+  }
+  
+  return '';
 };
+
+const config: MabotConfig = {
+  apiUrl: getEnvVar('MABOT_API_URL'),
+  botUsername: getEnvVar('MABOT_BOT_USERNAME') || 'aveeuropa',
+  email: getEnvVar('MABOT_EMAIL'),
+  password: getEnvVar('MABOT_PASSWORD'),
+};
+
+// Debug logging to help troubleshoot
+console.log('MABOT Config loaded:', {
+  apiUrl: config.apiUrl ? '✓ Set' : '✗ Missing',
+  botUsername: config.botUsername ? '✓ Set' : '✗ Missing',
+  email: config.email ? '✓ Set' : '✗ Missing',
+  password: config.password ? '✓ Set' : '✗ Missing',
+});
 
 // Validation function to check if configuration is complete
 export const isMabotConfigValid = (): boolean => {
