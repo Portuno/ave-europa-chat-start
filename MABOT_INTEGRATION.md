@@ -20,14 +20,14 @@ Copy the `env.example` file to `.env.local` and configure:
 
 ```bash
 # MABOT API URL (your MABOT instance URL)
-VITE_MABOT_API_URL=https://your-mabot-instance.com
+MABOT_API_URL=https://your-mabot-instance.com
 
 # MABOT Bot Username (should be "aveeuropa")
-VITE_MABOT_BOT_USERNAME=aveeuropa
+MABOT_BOT_USERNAME=aveeuropa
 
 # MABOT Credentials (for public demo)
-VITE_MABOT_EMAIL=your-email@example.com
-VITE_MABOT_PASSWORD=your-password
+MABOT_EMAIL=your-email@example.com
+MABOT_PASSWORD=your-password
 ```
 
 ### 2. MABOT Bot Configuration

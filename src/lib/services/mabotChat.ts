@@ -7,8 +7,8 @@ class MabotChatService {
   private chatId: string | null = null;
 
   constructor() {
-    this.baseUrl = import.meta.env.VITE_MABOT_API_URL || '';
-    this.botUsername = import.meta.env.VITE_MABOT_BOT_USERNAME || 'aveeuropa';
+    this.baseUrl = import.meta.env.MABOT_API_URL || '';
+    this.botUsername = import.meta.env.MABOT_BOT_USERNAME || 'aveeuropa';
     
     // Debug logging
     console.log('MABOT Chat Service initialized with:', {
@@ -17,7 +17,7 @@ class MabotChatService {
     });
     
     if (!this.baseUrl) {
-      console.error('VITE_MABOT_API_URL is not configured! Please set it in your .env.local file');
+      console.error('MABOT_API_URL is not configured! Please set it in your .env.local file');
     }
     
     this.generateChatId();

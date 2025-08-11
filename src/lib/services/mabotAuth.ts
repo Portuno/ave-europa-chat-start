@@ -7,13 +7,13 @@ class MabotAuthService {
   private tokenExpiry: number | null = null;
 
   constructor() {
-    this.baseUrl = import.meta.env.VITE_MABOT_API_URL || '';
+    this.baseUrl = import.meta.env.MABOT_API_URL || '';
     
     // Debug logging
     console.log('MABOT Auth Service initialized with baseUrl:', this.baseUrl);
     
     if (!this.baseUrl) {
-      console.error('VITE_MABOT_API_URL is not configured! Please set it in your .env.local file');
+      console.error('MABOT_API_URL is not configured! Please set it in your .env.local file');
     }
     
     this.loadTokensFromStorage();
@@ -58,7 +58,7 @@ class MabotAuthService {
   async login(credentials: LoginCredentials): Promise<Token> {
     try {
       if (!this.baseUrl) {
-        throw new Error('MABOT API URL not configured. Please set VITE_MABOT_API_URL in your .env.local file');
+        throw new Error('MABOT API URL not configured. Please set MABOT_API_URL in your .env.local file');
       }
 
       const loginUrl = `${this.baseUrl}/auth/login`;
@@ -143,8 +143,8 @@ class MabotAuthService {
   private async autoLoginIfNeeded(): Promise<void> {
     // Only auto-login if we have credentials in environment and no valid token
     if (!this.isAuthenticated()) {
-      const email = import.meta.env.VITE_MABOT_EMAIL;
-      const password = import.meta.env.VITE_MABOT_PASSWORD;
+      const email = import.meta.env.MABOT_EMAIL;
+      const password = import.meta.env.MABOT_PASSWORD;
       
       if (email && password) {
         try {

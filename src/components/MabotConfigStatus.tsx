@@ -19,10 +19,10 @@ const MabotConfigStatus = () => {
 
   useEffect(() => {
     const checkConfig = () => {
-      const apiUrl = import.meta.env.VITE_MABOT_API_URL || '';
-      const botUsername = import.meta.env.VITE_MABOT_BOT_USERNAME || '';
-      const email = import.meta.env.VITE_MABOT_EMAIL || '';
-      const password = import.meta.env.VITE_MABOT_PASSWORD || '';
+      const apiUrl = import.meta.env.MABOT_API_URL || '';
+      const botUsername = import.meta.env.MABOT_BOT_USERNAME || '';
+      const email = import.meta.env.MABOT_EMAIL || '';
+      const password = import.meta.env.MABOT_PASSWORD || '';
 
       const isValid = !!(apiUrl && botUsername && email && password);
 
@@ -57,7 +57,7 @@ const MabotConfigStatus = () => {
           <div className="font-semibold">MABOT configuration is incomplete:</div>
           <div className="text-sm space-y-1">
             <div>
-              <span className="font-mono">VITE_MABOT_API_URL:</span>{' '}
+              <span className="font-mono">MABOT_API_URL:</span>{' '}
               {configStatus.apiUrl ? (
                 <span className="text-green-600">✓ Set</span>
               ) : (
@@ -65,7 +65,7 @@ const MabotConfigStatus = () => {
               )}
             </div>
             <div>
-              <span className="font-mono">VITE_MABOT_BOT_USERNAME:</span>{' '}
+              <span className="font-mono">MABOT_BOT_USERNAME:</span>{' '}
               {configStatus.botUsername ? (
                 <span className="text-green-600">✓ Set</span>
               ) : (
@@ -73,7 +73,7 @@ const MabotConfigStatus = () => {
               )}
             </div>
             <div>
-              <span className="font-mono">VITE_MABOT_EMAIL:</span>{' '}
+              <span className="font-mono">MABOT_EMAIL:</span>{' '}
               {configStatus.email ? (
                 <span className="text-green-600">✓ Set</span>
               ) : (
@@ -81,7 +81,7 @@ const MabotConfigStatus = () => {
               )}
             </div>
             <div>
-              <span className="font-mono">VITE_MABOT_PASSWORD:</span>{' '}
+              <span className="font-mono">MABOT_PASSWORD:</span>{' '}
               {configStatus.password ? (
                 <span className="text-green-600">✓ Set</span>
               ) : (

@@ -1,7 +1,7 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, Send, Bot, User, RotateCcw } from "lucide-react";
+import { Send, Bot, User, RotateCcw } from "lucide-react";
 import mabotChatService from "@/lib/services/mabotChat";
 import MabotConfigStatus from "./MabotConfigStatus";
 import MabotApiDebug from "./MabotApiDebug";
@@ -167,29 +167,10 @@ const ChatInterface = forwardRef<ChatInterfaceRef, ChatInterfaceProps>(({ onSend
       {/* MABOT Configuration Status */}
       <MabotConfigStatus />
       
-      {/* Chat Header */}
-      <div className="bg-[var(--europa-gradient)] text-primary-foreground p-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center">
-            <MessageCircle className="w-5 h-5" />
-          </div>
-          <div>
-            <h3 className="font-semibold">Ave Europa AI</h3>
-            <p className="text-primary-foreground/80 text-sm">Your guide to European federalism</p>
-          </div>
-        </div>
-        
-        {/* Authentication Status */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span className="text-xs text-primary-foreground/80">MABOT Connected</span>
-          </div>
-        </div>
-      </div>
+      {/* Chat Header - ELIMINADO para maximizar espacio del chat */}
 
-      {/* Messages */}
-      <div className="h-96 overflow-y-auto p-4 space-y-4 bg-chat-background">
+      {/* Messages - Área más grande para el chat */}
+      <div className="h-[600px] overflow-y-auto p-4 space-y-4 bg-chat-background">
         {messages.map((message) => (
           <div
             key={message.id}

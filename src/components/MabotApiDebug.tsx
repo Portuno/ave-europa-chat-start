@@ -48,10 +48,10 @@ const MabotApiDebug = () => {
     setAuthStatus({
       isAuthenticated: mabotAuthService.isAuthenticated(),
       hasToken: !!mabotAuthService.getAccessToken(),
-      baseUrl: import.meta.env.VITE_MABOT_API_URL,
-      botUsername: import.meta.env.VITE_MABOT_BOT_USERNAME,
-      hasEmail: !!import.meta.env.VITE_MABOT_EMAIL,
-      hasPassword: !!import.meta.env.VITE_MABOT_PASSWORD,
+      baseUrl: import.meta.env.MABOT_API_URL,
+      botUsername: import.meta.env.MABOT_BOT_USERNAME,
+      hasEmail: !!import.meta.env.MABOT_EMAIL,
+      hasPassword: !!import.meta.env.MABOT_PASSWORD,
     });
   };
 
