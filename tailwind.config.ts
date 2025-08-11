@@ -52,6 +52,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				europa: {
+					blue: 'hsl(var(--europa-blue))',
+					'blue-light': 'hsl(var(--europa-blue-light))',
+					gold: 'hsl(var(--europa-gold))',
+				},
+				chat: {
+					background: 'hsl(var(--chat-background))',
+					'user-bubble': 'hsl(var(--chat-user-bubble))',
+					'bot-bubble': 'hsl(var(--chat-bot-bubble))',
+					border: 'hsl(var(--chat-border))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
