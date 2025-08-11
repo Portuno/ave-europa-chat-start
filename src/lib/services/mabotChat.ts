@@ -163,7 +163,7 @@ class MabotChatService {
     formattedText = formattedText.replace(/\.(\S)/g, '. $1');
     
     // Ensure questions at the end have consistent formatting
-    formattedText = formattedText.replace(/\?(\s*)$/, '?\n\nWould you like me to elaborate on any specific aspect?');
+    // Removed the automatic addition of elaboration question
     
     return formattedText;
   }
