@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, Bot, User } from "lucide-react";
@@ -10,29 +10,41 @@ interface Message {
   timestamp: Date;
 }
 
-const ChatInterface = () => {
+interface ChatInterfaceProps {
+  onSendMessage?: (message: string) => void;
+}
+
+interface ChatInterfaceRef {
+  sendMessage: (message: string) => void;
+}
+
+const ChatInterface = forwardRef<ChatInterfaceRef, ChatInterfaceProps>(({ onSendMessage }, ref) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm Ave Europa's AI assistant. Ask me anything about our vision for a united, sovereign Europe.",
+      text: "Hello! I am Ave Europa's AI assistant. I'm here to help you explore our vision and our policies. You can ask me about federalism, sovereignty, our ideology, or any of our 12 key points for Europe's future. How would you like to start?",
       isUser: false,
       timestamp: new Date(),
     },
   ]);
   const [inputText, setInputText] = useState("");
 
-  const handleSendMessage = () => {
-    if (!inputText.trim()) return;
+  const handleSendMessage = (customMessage?: string) => {
+    const messageText = customMessage || inputText;
+    if (!messageText.trim()) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputText,
+      text: messageText,
       isUser: true,
       timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInputText("");
+    if (!customMessage) {
+      setInputText("");
+    }
+    onSendMessage?.(messageText);
 
     // Simulate bot response
     setTimeout(() => {
@@ -52,6 +64,12 @@ const ChatInterface = () => {
       handleSendMessage();
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    sendMessage: (message: string) => {
+      handleSendMessage(message);
+    }
+  }));
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-card border border-chat-border rounded-2xl shadow-[var(--shadow-chat)] overflow-hidden">
@@ -107,7 +125,7 @@ const ChatInterface = () => {
             className="flex-1 border-chat-border focus:border-primary"
           />
           <Button
-            onClick={handleSendMessage}
+            onClick={() => handleSendMessage()}
             size="icon"
             className="bg-primary hover:bg-primary/90 shadow-sm"
           >
@@ -117,6 +135,9 @@ const ChatInterface = () => {
       </div>
     </div>
   );
-};
+});
+
+ChatInterface.displayName = 'ChatInterface';
 
 export default ChatInterface;
+export type { ChatInterfaceProps, ChatInterfaceRef };
