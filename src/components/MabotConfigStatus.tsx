@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, CheckCircle, XCircle } from "lucide-react";
+import { getMabotConfigStatus } from '../config/mabot';
 
 const MabotConfigStatus = () => {
   const [configStatus, setConfigStatus] = useState<{
@@ -19,13 +20,11 @@ const MabotConfigStatus = () => {
 
   useEffect(() => {
     const checkConfig = () => {
-      const apiUrl = import.meta.env.MABOT_API_URL || '';
-      const botUsername = import.meta.env.MABOT_BOT_USERNAME || '';
-      const email = import.meta.env.MABOT_EMAIL || '';
-      const password = import.meta.env.MABOT_PASSWORD || '';
-
+      const config = getMabotConfigStatus();
+      const { apiUrl, botUsername, email, password } = config;
+      
       const isValid = !!(apiUrl && botUsername && email && password);
-
+      
       setConfigStatus({
         apiUrl,
         botUsername,

@@ -1,4 +1,5 @@
 import { Token, LoginCredentials } from '../types/mabot';
+import { getMabotConfig, getMabotApiUrl, isMabotConfigValid } from '../../config/mabot';
 
 class MabotAuthService {
   private baseUrl: string;
@@ -7,7 +8,7 @@ class MabotAuthService {
   private tokenExpiry: number | null = null;
 
   constructor() {
-    this.baseUrl = import.meta.env.MABOT_API_URL || '';
+    this.baseUrl = getMabotApiUrl();
     
     // Debug logging
     console.log('MABOT Auth Service initialized with baseUrl:', this.baseUrl);
@@ -143,8 +144,8 @@ class MabotAuthService {
   private async autoLoginIfNeeded(): Promise<void> {
     // Only auto-login if we have credentials in environment and no valid token
     if (!this.isAuthenticated()) {
-      const email = import.meta.env.MABOT_EMAIL;
-      const password = import.meta.env.MABOT_PASSWORD;
+      const config = getMabotConfig();
+      const { email, password } = config;
       
       if (email && password) {
         try {

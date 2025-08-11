@@ -1,5 +1,6 @@
 import { UpdateIn, UpdateOut, MessageInput, MessageContent, UUID_REGEX } from '../types/mabot';
 import mabotAuthService from './mabotAuth';
+import { getMabotConfig, getMabotApiUrl, getMabotBotUsername } from '../../config/mabot';
 
 class MabotChatService {
   private baseUrl: string;
@@ -7,13 +8,13 @@ class MabotChatService {
   private chatId: string | null = null;
 
   constructor() {
-    this.baseUrl = import.meta.env.MABOT_API_URL || '';
-    this.botUsername = import.meta.env.MABOT_BOT_USERNAME || 'aveeuropa';
+    this.baseUrl = getMabotApiUrl();
+    this.botUsername = getMabotBotUsername();
     
     // Debug logging
     console.log('MABOT Chat Service initialized with:', {
       baseUrl: this.baseUrl,
-      botUsername: this.botUsername
+      botUsername: this.botUsername,
     });
     
     if (!this.baseUrl) {

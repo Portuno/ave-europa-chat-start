@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Copy, RefreshCw, Send, AlertCircle } from "lucide-react";
 import mabotChatService from "@/lib/services/mabotChat";
 import mabotAuthService from "@/lib/services/mabotAuth";
+import { getMabotConfigStatus } from '../config/mabot';
 
 const MabotApiDebug = () => {
   const [chatId, setChatId] = useState<string | null>(null);
@@ -45,14 +46,12 @@ const MabotApiDebug = () => {
     setChatId(currentChatId);
     
     // Get auth status
-    setAuthStatus({
+    const configStatus = {
       isAuthenticated: mabotAuthService.isAuthenticated(),
       hasToken: !!mabotAuthService.getAccessToken(),
-      baseUrl: import.meta.env.MABOT_API_URL,
-      botUsername: import.meta.env.MABOT_BOT_USERNAME,
-      hasEmail: !!import.meta.env.MABOT_EMAIL,
-      hasPassword: !!import.meta.env.MABOT_PASSWORD,
-    });
+      ...getMabotConfigStatus(),
+    };
+    setAuthStatus(configStatus);
   };
 
   const copyChatId = async () => {
